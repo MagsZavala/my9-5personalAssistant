@@ -17,6 +17,40 @@ $(function () {
       `;
       $('.container-lg').append(timeBlock);
     }
+    // Apply past, present, or future classes to each time block
+    function updateTimeBlocks() {
+        const currentHour = dayjs().hour();
+        $('.time-block').each(function () {
+          const blockHour = parseInt($(this).attr('id').split('-')[1]);
+          if (blockHour < currentHour) {
+            $(this).removeClass('present future').addClass('past');
+          } else if (blockHour === currentHour) {
+            $(this).removeClass('past future').addClass('present');
+          } else {
+            $(this).removeClass('past present').addClass('future');
+          }
+        });
+      }
+    
+      updateTimeBlocks();
+      setInterval(updateTimeBlocks, 60000); // Update every minute
+    
+      // Save the user input in local storage
+      $('.saveBtn').on('click', function () {
+        const hourId = $(this).parent().attr('id');
+        const description = $(this).siblings('.description').val();
+        localStorage.setItem(hourId, description);
+        alert('Appointment was Added to local storage');
+      });
+    
+      // Load saved data from local storage
+      $('.time-block').each(function () {
+        const hourId = $(this).attr('id');
+        const savedDescription = localStorage.getItem(hourId);
+        if (savedDescription) {
+          $(this).find('.description').val(savedDescription);
+        }
+      });
   
 });
   
