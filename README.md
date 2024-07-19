@@ -39,6 +39,7 @@ Navigate to the project directory:
 cd my9-5personalAssistant
 Open index.html in your browser.
 
+
 Usage
 The current date is displayed at the top of the calendar.
 Scroll down to view the timeblocks for standard business hours (9am–5pm).
@@ -54,6 +55,7 @@ JavaScript
 jQuery
 Day.js
 
+file:///Users/magoo/bootcamp/hw/my9-5personalAssistant/index.html
 
 Code Highlights
 
